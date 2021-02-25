@@ -1,0 +1,69 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.margin-top {
+  margin-top: 100px;
+}
+
+.content {
+  margin: 100px auto 100px auto;
+}
+
+.login-header {
+
+}
+
+.login-body {
+  margin: auto;
+  width: 400px;
+}
+
+.login-card {
+  padding: 10px;
+}
+
+.login-footer {
+  margin: auto;
+  width: 400px;
+}
+
+.ulasan-header {
+  margin: auto;
+}
+
+.ulasan-body {
+  margin: auto;
+  padding: 10px;
+  width: 400px;
+}
+
+.form-header {
+  margin: 100px 0 100px 0;
+}
+
+.profile {
+  width: 200px;
+  height: 300px;
+  background-color: grey;
+}
+
+.photo-profile {
+  width: 200px;
+}
+
+.check {
+  width: 25%;
+}
+
+.checked {
+  width: 50%;
+}
+
+@media (max-width: 576px) {
+  .mobile {
+    margin: auto;
+    width: 400px;
+  }
+
+}
