@@ -11,14 +11,14 @@
 </head>
 <body>
   <section id="navbar">
-    <div class="container-fluid fixed-top">
-      <div class="bg-light">
+    <div class="fixed-top">
+      <div class="bg-dark">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-dark">
 
           <!-- Navbar Logo -->
           <div class="mr-3">
-            <img width="50" src="/file/logo.jpg" alt="">
+            <img width="50" src="/images/logo.jpg" alt="">
           </div>
 
           <!-- Navbar Toggle  -->
@@ -40,7 +40,10 @@
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-              <button type="button" class="btn btn-outline-dark mr-sm-2" data-toggle="modal" data-target="#welcome_message">Welcome Message</button>
+              <button type="button" class="btn btn-outline-light mr-sm-2" data-toggle="modal" data-target="#welcome_message">Welcome Message</button>
+            </form>
+            <form class="form-inline my-2 my-lg-0">
+              <button type="button" class="btn btn-outline-light mr-sm-2" data-toggle="modal" data-target="#ulasan_modal">Ulasan</button>
             </form>
           </div>
         </nav>
@@ -56,12 +59,12 @@
 
   <!-- Form Login -->
   <section class="content" id="login">
-    <div class="container-fluid">
+    <div class="container">
       <div class="mb-3">
         <div class="login-header mb-3 p-1 text-center">
           <h1 class="display-4">Login</h1>
         </div>
-        <div class="login-body">
+        <div class="mobile login-body">
           <div class="login-card card">
             <form method="POST" action="{{ route('login') }}">
               @csrf
@@ -78,7 +81,7 @@
           </div>
         </div>
       </div>
-      <div class="login-footer">
+      <div class="mobile login-footer">
         <div class="row">
           <div class="col-lg col-md col-sm p-3 text-center">
             <label for="">Belum punya akun?</label>
@@ -93,102 +96,146 @@
     </div>
   </section>
 
+  <hr id="deskripsi" class="text-secondary">
+
   <!-- Deskripsi -->
-  <section class="content" id="deskripsi"> <hr>
-    <div class="container-fluid">
-      <div class="deskripsi-header mb-3 bg-secondary p-1 text-center text-white">
+  <section class="content">
+    <div class="container">
+      <div class="deskripsi-header text-center">
         <h1 class="display-4">Deskripsi</h1>
       </div>
       <div class="deskripsi-body">
-        <div class="bg-light p-3">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A arcu cursus vitae congue mauris rhoncus aenean. Sed ullamcorper morbi tincidunt ornare massa. Ultricies tristique nulla aliquet enim tortor at. Commodo odio aenean sed adipiscing. Feugiat in fermentum posuere urna nec tincidunt praesent. Quam vulputate dignissim suspendisse in est ante in nibh mauris. Suspendisse faucibus interdum posuere lorem ipsum. Nisl rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Urna neque viverra justo nec ultrices. Id velit ut tortor pretium. Aliquam vestibulum morbi blandit cursus risus at ultrices mi tempus. Nunc sed velit dignissim sodales ut. Risus feugiat in ante metus dictum at tempor commodo ullamcorper. Nec dui nunc mattis enim ut tellus elementum sagittis vitae. Eu scelerisque felis imperdiet proin fermentum.
-          </p>
+        <div>
+          <div class="row content-description">
+            <div class="col">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh venenatis cras sed felis eget velit. Sed viverra tellus in hac habitasse. Eu facilisis sed odio morbi quis commodo odio aenean sed. Ultrices sagittis orci a scelerisque purus semper. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus. Malesuada fames ac turpis egestas integer eget. Sed lectus vestibulum mattis ullamcorper. Gravida neque convallis a cras semper auctor neque vitae tempus. Commodo elit at imperdiet dui accumsan sit amet nulla. Senectus et netus et malesuada. Odio pellentesque diam volutpat commodo. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Nisl tincidunt eget nullam non nisi est sit. Lectus proin nibh nisl condimentum id venenatis. Mi bibendum neque egestas congue quisque egestas diam in. Mi quis hendrerit dolor magna. Turpis egestas integer eget aliquet nibh praesent tristique.
+              </p>
+              <p>
+                Sed vulputate mi sit amet mauris commodo quis imperdiet. Viverra justo nec ultrices dui sapien eget mi proin. Blandit aliquam etiam erat velit scelerisque in. Tempor id eu nisl nunc mi. Facilisis gravida neque convallis a. Ullamcorper a lacus vestibulum sed arcu. Egestas sed tempus urna et pharetra pharetra massa massa ultricies. Pharetra massa massa ultricies mi quis hendrerit dolor magna. Feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper. Diam quam nulla porttitor massa id neque aliquam vestibulum morbi. Bibendum at varius vel pharetra vel. Donec massa sapien faucibus et molestie ac feugiat sed lectus. Hendrerit dolor magna eget est lorem ipsum dolor sit amet. In mollis nunc sed id. Dui faucibus in ornare quam viverra orci. Tincidunt ornare massa eget egestas purus. Morbi tincidunt augue interdum velit euismod in pellentesque. Interdum posuere lorem ipsum dolor sit.
+              </p>
+              <p>
+                At risus viverra adipiscing at in tellus. Vulputate eu scelerisque felis imperdiet proin fermentum. Auctor augue mauris augue neque gravida in fermentum et sollicitudin. Sapien pellentesque habitant morbi tristique senectus. Sed enim ut sem viverra aliquet eget sit amet tellus. Faucibus a pellentesque sit amet. Ac orci phasellus egestas tellus. Venenatis tellus in metus vulputate eu scelerisque felis imperdiet proin. Eget nullam non nisi est sit amet facilisis. Condimentum vitae sapien pellentesque habitant morbi. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat. Feugiat scelerisque varius morbi enim nunc faucibus. Nunc scelerisque viverra mauris in aliquam sem. Accumsan tortor posuere ac ut.
+              </p>
+            </div>
+          </div>
+          <div class="row content-description">
+            <div class="col-md-6 col-sm-12">
+              <strong><h3>1. Form Pengajuan Cuti</h3></strong>
+              <hr>
+              <img class="img-thumbnail" width="100%" src="/images/pengajuan.png" alt="">
+            </div>
+            <div class="col m-auto">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+          </div>
 
-          <p>
-            At tellus at urna condimentum mattis pellentesque id nibh tortor. Ac felis donec et odio pellentesque diam volutpat commodo sed. Pharetra convallis posuere morbi leo urna molestie at elementum eu. Viverra ipsum nunc aliquet bibendum enim facilisis. Lorem sed risus ultricies tristique nulla aliquet. Nibh cras pulvinar mattis nunc. Euismod nisi porta lorem mollis aliquam ut porttitor leo. Volutpat odio facilisis mauris sit amet massa vitae tortor condimentum. Amet consectetur adipiscing elit duis. Orci nulla pellentesque dignissim enim sit amet. Fringilla urna porttitor rhoncus dolor purus. Porttitor leo a diam sollicitudin tempor id eu nisl. Condimentum mattis pellentesque id nibh tortor id aliquet. Nulla pharetra diam sit amet nisl suscipit. Sed arcu non odio euismod lacinia at quis risus.
-          </p>
+          <div class="row content-description">
+            <div class="col-md-6 col-sm-12">
+              <strong><h3>2. Menu Approval cuti</h3></strong>
+              <hr>
+              <img class="img-thumbnail" width="100%" src="/images/approval.png" alt="">
+            </div>
+            <div class="col m-auto">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+          </div>
 
-          <p>
-            Cras ornare arcu dui vivamus arcu felis bibendum. Vel fringilla est ullamcorper eget nulla facilisi. Iaculis nunc sed augue lacus viverra. Bibendum enim facilisis gravida neque convallis a cras. Lorem donec massa sapien faucibus et molestie ac. Risus commodo viverra maecenas accumsan. Et netus et malesuada fames ac turpis. Duis tristique sollicitudin nibh sit amet. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Neque sodales ut etiam sit amet nisl purus. Urna condimentum mattis pellentesque id nibh tortor id aliquet lectus.
-          </p>
+          <div class="row content-description">
+            <div class="col-md-6 col-sm-12">
+              <strong><h3>3. Halaman Profile</h3></strong>
+              <hr>
+              <img class="img-thumbnail" width="100%" src="/images/profile.png" alt="">
+            </div>
+            <div class="col m-auto">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+          </div>
 
-          <p>
-            Est ultricies integer quis auctor elit sed vulputate mi sit. Ipsum nunc aliquet bibendum enim facilisis gravida neque. Enim diam vulputate ut pharetra. Ac tortor dignissim convallis aenean et tortor at risus viverra. Dictum sit amet justo donec enim diam vulputate ut. Et netus et malesuada fames ac turpis. Lacus sed viverra tellus in hac habitasse platea dictumst. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus. Purus in mollis nunc sed id semper risus in hendrerit. Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt. Nascetur ridiculus mus mauris vitae. Nulla at volutpat diam ut. Vel turpis nunc eget lorem dolor sed viverra. Hendrerit gravida rutrum quisque non tellus orci ac auctor. Risus in hendrerit gravida rutrum quisque non tellus orci ac.
-          </p>
+          <div class="row content-description">
+            <div class="col-md-6 col-sm-12">
+              <strong><h3>4. Halaman Admin</h3></strong>
+              <hr>
+              <img class="img-thumbnail" width="100%" src="/images/admin.png" alt="">
+            </div>
+            <div class="col m-auto">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <hr id="ulasan" class="text-secondary">
+
   <!-- Ulasan -->
-  <section class="content" id="ulasan"> <hr>
-    <div class="container-fluid">
-      <div class="ulasan-header mb-3 bg-secondary p-1 text-center text-white">
+  <section class="content">
+    <div class="container">
+      <div class="ulasan-header mb-3 text-center">
         <h1 class="display-4">Ulasan</h1>
       </div>
-      <div class="ulasan-body bg-light">
-        <div class="">
-          <form action="/review" method="head">
-            <div class="form-group">
-              <label>Nama</label>
-              <input type="text" class="form-control" name="name" required>
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="text" class="form-control" name="email" required>
-            </div>
-            <div class="form-group">
-              <label>Ulasan</label>
-              <textarea type="text" class="form-control" name="message" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-success">Simpan</button>
-          </form>
+      <div class="ulasan-body">
+        @foreach($review as $data)
+          <strong>{{ $data->name }}</strong>
+          <div class="">
+            <p>{{ $data->message }}</p>
+          </div>
+          <hr>
+        @endforeach
+        <div class="text-center">
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#show-all">Lihat lebih banyak</button>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 <!-- Footer -->
 <section id="footer">
   <div class="footer-body container-fluid bg-dark">
     <div class="row m-auto text-center justify-content-sm-center">
-      <div class="col-lg-auto col-md col-sm col">
+      <div class="col-md-auto col-sm-auto col-4">
         <div class="p-3 text-white">
           <a class="text-white text-decoration-none" href="https://www.linkedin.com/in/ilhamprasetyo11/"><i class="fab fa-linkedin fa-3x"></i></a>
         </div>
       </div>
-      <div class="col-lg-auto col-md col-sm col">
+      <div class="col-md-auto col-sm-auto col-4">
         <div class="p-3 text-white">
           <a class="text-white text-decoration-none" href="https://github.com/ilhamprasetyo"><i class="fab fa-github-square fa-3x"></i></a>
         </div>
       </div>
-      <div class="col-lg-auto col-md col-sm col">
+      <div class="col-md-auto col-sm-auto col-4">
         <div class="p-3 text-white">
           <a class="text-white text-decoration-none" href="mailto:ilhamprasetyobaru@gmail.com"><i class="fas fa-envelope-square fa-3x"></i></a>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col text-center">
+      <div class="col-12 text-center">
         <div class="p-3 text-white">
           Copyright Ilham Prasetyo
         </div>
       </div>
     </div>
   </div>
-</div>
 </section>
 
 <!-- Modal Welcome Message -->
-<div class="modal fade" id="welcome_message" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="welcome_message" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-body">
         <div class="row mb-3">
           <div class="col-auto m-auto">
-            <h1 class="display-3">Welcome!</h1>
+            <h1 class="display-4">Welcome!</h1>
           </div>
           <div class="col-auto m-auto">
             <h5>Terima kasih sudah mengunjungi</h5>
@@ -196,16 +243,98 @@
         </div>
         <div class="col-auto p-auto m-auto">
           <p>Selamat datang di aplikasi CutiKu. CutiKu adalah aplikasi cuti berbasis web yang bertujuan untuk memudahkan karyawan dalam mengajukan cuti.</p>
-          <p>Aplikasi ini adalah portofolio <i>Web Developer</i> saya yang dibuat menggunakan bahasa pemrograman HTML, CSS dan JavaScript dengan library Bootstrap 4.6 (Front-End) dan PHP 8 dengan framework Laravel 8 (Back-End).</p>
-          <p>Jika ada bug, kritik dan saran silahkan beritahu saya via</p>
+          <p>Aplikasi ini adalah portofolio <i>Web Developer</i> saya yang dibuat menggunakan :</p>
+          <span>Front-End</span>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Bootstrap 4.6</li>
+          </ul>
+          <span>Back-End</span>
+          <ul>
+            <li>PHP</li>
+            <li>Laravel 8</li>
+          </ul>
+          <span>DBMS</span>
+          <ul>
+            <li>MySQL</li>
+          </ul>
+          <p>Berikan kritik dan saran melalui :</p>
           <ul>
             <li>E-mail : ilhamprasetyobaru@gmail.com</li>
-            <li>Melalui kotak pesan di web ini</li>
+            <li>Melalui form ulasan yang ada di web ini</li>
           </ul>
+          <p>Terima kasih!</p>
+          <p>Ilham Prasetyo</p>
           <div class="" align="center">
             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal form ulasan -->
+<div class="modal fade" id="ulasan_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row mb-3">
+          <div class="col-auto m-auto text-center">
+            <h1 class="display-4">Beri Ulasan!</h1>
+          </div>
+          <div class="col-auto m-auto text-center">
+            <h5>Berikan kritik dan saran anda</h5>
+          </div>
+        </div>
+        <div class="col-auto p-auto m-auto">
+          <div class="p-3">
+            <form action="/review_input" method="post">
+              {{ csrf_field() }}
+              <div class="form-group">
+                <label>Nama</label>
+                <input type="text" class="form-control" name="name" required>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email" required>
+              </div>
+              <div class="form-group">
+                <label>Ulasan</label>
+                <textarea type="text" class="form-control" name="message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-success">Simpan</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal semua ulasan -->
+<div class="modal fade" id="show-all" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-auto m-auto text-center">
+          <h1 class="display-4">Ulasan</h1>
+        </div>
+      </div>
+      <div class="modal-body">
+        @foreach($all_review as $data)
+          <strong>{{ $data->name }}</strong>
+          <div class="">
+            <p>{{ $data->message }}</p>
+          </div>
+          <hr>
+        @endforeach
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

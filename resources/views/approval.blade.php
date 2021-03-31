@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,6 +10,7 @@
   <title>CutiKu - Approval</title>
 </head>
 <body>
+
   <!-- Navbar -->
   @include('navbar')
 
@@ -27,83 +28,82 @@
         </div>
 
         <!-- Table -->
-        <div class="table-responsive table-hover text-center">
-          <table class="table" id="table_id">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">No</th>
-                <th scope="col">ID / Nama Pegawai</th>
-                <th scope="col">Cuti</th>
-                <th scope="col">Tanggal Pengajuan</th>
-                <th scope="col">Lama Cuti</th>
-                <th scope="col">Mulai</th>
-                <th scope="col">Hingga</th>
-                <th scope="col">Status</th>
-                <th scope="col">Opsi</th>
-              </tr>
-            </thead>
-            <tbody>
+        <table class="table table-hover display nowrap dataTable dtr-inline" id="table_id">
+          <thead class="thead-dark">
+            <tr align="center">
+              <th scope="col">No</th>
+              <th scope="col">Nama</th>
+              <th scope="col">Jenis</th>
+              <th scope="col">Tanggal</th>
+              <th scope="col">Lama</th>
+              <th scope="col">Mulai</th>
+              <th scope="col">Hingga</th>
+              <th scope="col">Lampiran</th>
+              <th scope="col">Status</th>
+              <th scope="col">Opsi</th>
+            </tr>
+          </thead>
+          <tbody>
 
-              <!-- Data from Database -->
-              @foreach($pengajuan as $data)
-              <tr>
-                <th scope="row"> {{ $loop->iteration }} </th>
-                <td> {{ $data->pegawai_id }} / {{ $data->nama }} </td>
-                <td> {{ $data->cuti }} </td>
-                <td> {{ $data->tanggal_pengajuan }} </td>
-                <td> {{ $data->lama_cuti }} </td>
-                <td> {{ $data->mulai }} </td>
-                <td> {{ $data->hingga }} </td>
-                <td> {{ $data->status }} </td>
-                <td>
+            <!-- Data from Database -->
+            @foreach($pengajuan as $data)
+            <tr align="center">
+              <th class="align-middle" scope="row"> {{ $loop->iteration }} </th>
+              <td class="align-middle"> {{ $data->nama }} </td>
+              <td class="align-middle"> {{ $data->jenis_cuti }} </td>
+              <td class="align-middle"> {{ $data->tanggal_pengajuan }} </td>
+              <td class="align-middle"> {{ $data->lama_cuti }} hari </td>
+              <td class="align-middle"> {{ $data->mulai }} </td>
+              <td class="align-middle"> {{ $data->hingga }} </td>
+              <td class="align-middle">
+                @if ($data->file === null)
+
+                @else
+                <a href="/pengajuan/download/{{ $data->id }}" class="btn btn-info" role="button">Download</button>
+                  @endif
+                </td>
+
+
+                <td class="align-middle"> {{ $data->status }} </td>
+                <td class="align-middle">
 
                   <!-- Jika lama cuti melebihi sisa cuti -->
                   @if ($data->lama_cuti > $data->cuti)
 
-                    <!-- Jika disetujui -->
-                    @if ($data->status === "Disetujui")
-                    <a class="btn btn-danger" href="/pengajuan/batal/{{$data->id}}" role="button">Batal</a>
+                  <!-- Jika disetujui -->
+                  @if ($data->status === "Disetujui")
+                  <a class="btn btn-danger" href="/pengajuan/batal/{{$data->id}}" role="button">Batal</a>
 
-                    <!-- Jika tidak disetujui -->
-                    @else
+                  <!-- Jika tidak disetujui -->
+                  @else
 
-                    @endif
+                  @endif
 
                   <!-- Jika lama cuti tidak melebihi sisa cuti -->
                   @else
 
-                    <!-- Jika disetujui -->
-                    @if ($data->status === "Disetujui")
-                    <a class="btn btn-danger" href="/pengajuan/batal/{{$data->id}}" role="button">Batal</a>
+                  <!-- Jika disetujui -->
+                  @if ($data->status === "Disetujui")
+                  <a class="btn btn-danger" href="/pengajuan/batal/{{$data->id}}" role="button">Batal</a>
 
-                    <!-- Jika dibatalkan -->
-                    @elseif ($data->status === "Dibatalkan")
+                  <!-- Jika dibatalkan -->
+                  @elseif ($data->status === "Dibatalkan")
 
-                    <!-- Jika tidak disetujui -->
-                    @else
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#approval"
-                      data-id="{{$data->id}}"
-                      data-pegawai_id="{{$data->pegawai_id}}"
-                      data-nama="{{$data->nama}}"
-                      data-tanggal_pengajuan="{{$data->tanggal_pengajuan}}"
-                      data-lama_cuti="{{$data->lama_cuti}}"
-                      data-mulai="{{$data->mulai}}"
-                      data-hingga="{{$data->hingga}}"
-                      data-unit_id="{{$data->unit_id}}"
-                      data-nama_unit="{{$data->nama_unit}}"
-                      data-jabatan_id="{{$data->jabatan_id}}"
-                      data-nama_jabatan="{{$data->nama_jabatan}}"
-                      data-status="{{$data->status}}"
-                      data-simpan="/pengajuan/update/{{ $data->id }}">
+                  <!-- Jika tidak disetujui -->
+                  @else
+                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#rincian"
+                  data-nama="{{$data->nama}}"
+                  data-status="{{$data->status}}"
+                  data-simpan="/pengajuan/status/{{ $data->id }}">
 
-                      @if ($data->status === "Tidak Disetujui")
-                      Re-approval
-                      @else
-                      Approval
-                      @endif
+                  @if ($data->status === "Tidak Disetujui")
+                  Re-approval
+                  @else
+                  Approval
+                  @endif
 
-                    </button>
-                    @endif
+                </button>
+                @endif
                 @endif
               </td>
             </tr>
@@ -112,15 +112,14 @@
         </table>
       </div>
     </div>
-  </div>
 
-  <!-- Modal Rincian Pengajuan -->
-  @include('rincian')
+    <!-- Modal Rincian Pengajuan -->
+    @include('cuti_approval')
 
-</section>
+  </section>
 
-<!-- Javascript CDN and Custom Javascript -->
-@include('behavior')
+  <!-- Javascript CDN and Custom Javascript -->
+  @include('behavior')
 
 </body>
 </html>

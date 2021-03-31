@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">\
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- CSS CDN and  Custom CSS -->
   @include('style')
@@ -24,78 +24,118 @@
         </div>
 
         <!-- Content -->
-        <div class="mobile row">
+        <div class="row mobile">
 
           <!-- Photo Section -->
-          <div class="col-lg-5 col-md-4 col-12 text-center">
+          <div class="col-md-6 col-sm-12 m-auto text-center">
+            <div class="biodata mobile p-3">
+              <div class="photo-profile m-auto mb-3">
+                @if ($pegawai->file === null)
+                <div class="photo-null">
 
-            <!-- Option Modal Button -->
-            <div class="mb-3">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#photo-profile">Option</button>
-            </div>
+                </div>
+                @else
 
-            <div class="">
-              @if ($pegawai->file == null)
-              <div class="profile m-auto">
+                <!-- Photo -->
+                <img class="photo-profile img-thumbnail" src="photos/{{$pegawai->file}}">
 
+                @endif
               </div>
-              @else
-              <!-- Photo -->
-              <img class="photo-profile" src="/file/{{$pegawai->file}}">
-              @endif
+
+              <!-- Option Modal Button -->
+              <div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#photo-profile">Change Photo</button>
+              </div>
             </div>
           </div>
 
           <!-- Biodata -->
-          <div class="test col-lg-6 col-md col-sm col-12 m-auto col-6 text-center">
-            <div class="text-center p-3">
+          <div class="col m-auto">
+            <div class="biodata mobile p-3">
               <div class="row mb-3">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-3 bg-dark text-white p-1">
+                <div class="col-3 p-1">
                   <strong>ID</strong>
                 </div>
-                <div class="col-lg-9 col-md col-sm col bg-light p-1">
+                <div class="col-1 p-1">
+                  <strong>:</strong>
+                </div>
+                <div class="col p-1">
                   {{ $pegawai->id }}
                 </div>
               </div>
               <div class="row mb-3">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-3 bg-dark text-white p-1">
+                <div class="col-3 p-1">
                   <strong>Nama</strong>
                 </div>
-                <div class="col-lg-9 col-md col-sm col bg-light p-1">
+                <div class="col-1 p-1">
+                  <strong>:</strong>
+                </div>
+                <div class="col p-1">
                   {{ $pegawai->nama }}
                 </div>
               </div>
               <div class="row mb-3">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-3 bg-dark text-white p-1">
+                <div class="col-3 p-1">
+                  <strong>Email</strong>
+                </div>
+                <div class="col-1 p-1">
+                  <strong>:</strong>
+                </div>
+                <div class="col p-1">
+                  {{ auth()->user()->email }}
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-3 p-1">
                   <strong>Alamat</strong>
                 </div>
-                <div class="col-lg-9 col-md col-sm col bg-light p-1">
+                <div class="col-1 p-1">
+                  <strong>:</strong>
+                </div>
+                <div class="col p-1">
                   {{ $pegawai->alamat }}
                 </div>
               </div>
               <div class="row mb-3">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-3 bg-dark text-white p-1">
+                <div class="col-3 p-1">
                   <strong>Unit</strong>
                 </div>
-                <div class="col-lg-9 col-md col-sm col bg-light p-1">
+                <div class="col-1 p-1">
+                  <strong>:</strong>
+                </div>
+                <div class="col p-1">
                   {{ $pegawai->nama_unit }}
                 </div>
               </div>
               <div class="row mb-3">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-3 bg-dark text-white p-1">
+                <div class="col-3 p-1">
                   <strong>Jabatan</strong>
                 </div>
-                <div class="col-lg-9 col-md col-sm col bg-light p-1">
+                <div class="col-1 p-1">
+                  <strong>:</strong>
+                </div>
+                <div class="col p-1">
                   {{ $pegawai->nama_jabatan }}
                 </div>
               </div>
               <div class="row mb-3">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-3 bg-dark text-white p-1">
+                <div class="col-3 p-1">
                   <strong>Cuti</strong>
                 </div>
-                <div class="col-lg-9 col-md-0 col-sm col bg-light p-1">
+                <div class="col-1 p-1">
+                  <strong>:</strong>
+                </div>
+                <div class="col p-1">
                   {{ $pegawai->cuti }} hari
                 </div>
+              </div>
+              <div class="row">
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#pegawai_edit"
+                data-id="{{ $pegawai->id }}"
+                data-nama="{{ $pegawai->nama }}"
+                data-email="{{ auth()->user()->email }}"
+                data-alamat="{{ $pegawai->alamat }}"
+                data-simpan="/profile/update/{{$pegawai->id}}">Edit Profile</button>
               </div>
             </div>
           </div>
@@ -128,8 +168,7 @@
                       </div>
                     </div>
                   </form>
-                  <form id="delete_photo" action="/delete_photo/{{ $pegawai->id }}">
-                  </form>
+                  <form id="delete_photo" action="/delete_photo/{{ $pegawai->id }}"></form>
                 </div>
                 <div class="col-auto">
                   <button type="submit" class="btn btn-success" onclick="event.preventDefault(); document.getElementById('upload_photo').submit();">Upload</button>
@@ -147,6 +186,9 @@
       </div>
     </div>
   </section>
+
+  <!-- Modal form edit data -->
+  @include('pegawai_edit')
 
   <!-- CDN Javascript dan Custom Javascript -->
   @include('behavior')

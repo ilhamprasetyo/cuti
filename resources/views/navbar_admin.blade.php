@@ -1,7 +1,19 @@
 <div class="fixed-top mb-3">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="bg-white rounded p-2 mr-3"><strong>Aplikasi Cuti</strong></div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="row mr-1">
+      <div class="col my-auto">
+        <div class="bg-white rounded"><img class="img-thumbnail" width="50" src="/images/logo.jpg"></div>
+      </div>
+      <div class="col my-auto">
+        <span class="text-white"><strong>Admin</strong></span>
+      </div>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#show" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="show">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="/pegawai">Pegawai</a>
@@ -17,14 +29,21 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-md-auto">
-        <div class="dropdown">
-          @isset($pengajuan)
 
-          @endisset
-          @empty($pengajuan)
-          <button type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#tambah">Tambah Data</button>
-          @endempty
-          <button class="btn text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</button>
+        @isset($pengajuan)
+
+        @endisset
+
+        @empty($pengajuan)
+        <div class="">
+          <div class="my-auto mr-3">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#input">Tambah Data</button>
+          </div>
+        </div>
+        @endempty
+
+        <div class="my-auto">
+          <button class="btn text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Admin</strong></button>
           <div class="dropdown-menu dropdown-menu-lg-right">
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               {{ __('Logout') }}
@@ -37,4 +56,7 @@
       </ul>
     </div>
   </nav>
+  <div class="relative" align="center">
+    @include('messages')
+  </div>
 </div>

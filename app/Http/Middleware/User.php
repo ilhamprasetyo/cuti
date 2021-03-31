@@ -15,13 +15,12 @@ class User
   */
   public function handle($request, Closure $next)
   {
-    if(auth()->user()->jabatan_id == 0){
-      return redirect()->back();
+    if(auth()->user()->jabatan_id === 0){
+      return redirect()->back()->with('danger', 'Akses anda dibatasi');
     }
 
     else {
       return $next($request);
     }
-
   }
 }

@@ -28,66 +28,77 @@
         </div>
 
         <!-- Table -->
-        <div class="table table-hover text-center">
-          <table class="table" id="table_id">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">No</th>
-                <th scope="col">Tanggal Pengajuan</th>
-                <th scope="col">Lama Cuti</th>
-                <th scope="col">Mulai</th>
-                <th scope="col">Hingga</th>
-                <th scope="col">Status</th>
-                <th scope="col">Opsi</th>
-              </tr>
-            </thead>
-            <tbody>
+        <table class="table table-hover display nowrap dataTable dtr-inline" id="table_id">
+          <thead class="thead-dark">
+            <tr align="center">
+              <th scope="col">No</th>
+              <th scope="col">ID</th>
+              <th scope="col">Jenis</th>
+              <th scope="col">Tanggal</th>
+              <th scope="col">Lama</th>
+              <th scope="col">Mulai</th>
+              <th scope="col">Hingga</th>
+              <th scope="col">Lampiran</th>
+              <th scope="col">Status</th>
+              <th scope="col">Opsi</th>
+            </tr>
+          </thead>
+          <tbody>
 
-              <!-- Data dari database -->
-              @foreach($pengajuan as $data)
-              <tr>
-                <th scope="row"> {{ $loop->iteration }} </th>
-                <td> {{ $data->tanggal_pengajuan }} </td>
-                <td> {{ $data->lama_cuti }} </td>
-                <td> {{ $data->mulai }} </td>
-                <td> {{ $data->hingga }} </td>
-                <td> {{ $data->status }} </td>
-                <td>
+            <!-- Data dari database -->
+            @foreach($pengajuan as $data)
+            <tr align="center">
+              <th class="align-middle" scope="row"> {{ $loop->iteration }} </th>
+              <td class="align-middle"> {{ $data->id }} </td>
+              <td class="align-middle"> {{ $data->jenis_cuti }} </td>
+              <td class="align-middle"> {{ $data->tanggal_pengajuan }} </td>
+              <td class="align-middle"> {{ $data->lama_cuti }} hari</td>
+              <td class="align-middle"> {{ $data->mulai }} </td>
+              <td class="align-middle"> {{ $data->hingga }} </td>
+              <td class="align-middle">
+                @if ($data->file === null)
 
-                  <!-- Jika status belum di-approve -->
-                  @if ($data->status === null)
-                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit"
-                  data-id="{{$data->id}}"
-                  data-pegawai_id="{{$data->pegawai_id}}"
-                  data-nama="{{$data->nama}}"
-                  data-tanggal_pengajuan="{{$data->tanggal_pengajuan}}"
-                  data-lama_cuti="{{$data->lama_cuti}}"
-                  data-mulai="{{$data->mulai}}"
-                  data-hingga="{{$data->hingga}}"
-                  data-unit_id="{{$data->unit_id}}"
-                  data-nama_unit="{{$data->nama_unit}}"
-                  data-jabatan_id="{{$data->jabatan_id}}"
-                  data-nama_jabatan="{{$data->nama_jabatan}}"
-                  data-simpan="/pengajuan/update/{{ $data->id }}">Edit</button>
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus"
-                  data-hapus="/pengajuan/hapus/{{ $data->id }}">Hapus</button>
+                @else
+                <a class="btn btn-primary" href="pengajuan/download/{{ $data->id }}">Download</a>                
+                @endif
+              </td>
+              <td class="align-middle"> {{ $data->status }} </td>
+              <td class="align-middle">
 
-                  <!-- Jika status sudah di-approve -->
-                  @else
+                <!-- Jika status disetujui -->
+                @if ($data->status === "Disetujui")
+                <!-- Tidak ada opsi -->
 
-                  @endif
-                </td>
-              </tr>
-              @endforeach
+                @elseif ($data->status === "Dibatalkan")
+                <!-- Tidak ada opsi -->
 
-            </tbody>
-          </table>
-        </div>
+                <!-- Jika status belum atau tidak disetujui -->
+                @else
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#pengajuan_edit"
+                data-id="{{$data->id}}"
+                data-jenis_cuti="{{$data->jenis_cuti}}"
+                data-tanggal_pengajuan="{{$data->tanggal_pengajuan}}"
+                data-lama_cuti="{{$data->lama_cuti}}"
+                data-mulai="{{$data->mulai}}"
+                data-hingga="{{$data->hingga}}"
+                data-simpan="/pengajuan/update/{{ $data->id }}">Edit</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete"
+                data-hapus="/pengajuan/hapus/{{ $data->id }}">Hapus</button>
+                @endif
+              </td>
+            </tr>
+            @endforeach
+
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <!-- Modal form edit data dan hapus -->
-    @include('pengajuan_opsi')
+    <!-- Modal form edit data -->
+    @include('pengajuan_edit')
+
+    <!-- Modal form hapus data -->
+    @include('delete')
 
   </section>
 

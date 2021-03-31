@@ -34,10 +34,10 @@ class JabatanController extends Controller
       'nama_jabatan' => $request->nama_jabatan,
     ]);
 
-    return redirect('/jabatan');
+    return redirect('/jabatan')->with('success', 'Data berhasil disimpan');
   }
 
-  // Update data  
+  // Update data
   public function update(Request $request, $id)
   {
     $this->validate($request,[
@@ -48,7 +48,7 @@ class JabatanController extends Controller
     $jabatan->nama_jabatan = $request->nama_jabatan;
     $jabatan->save();
 
-    return redirect('/jabatan');
+    return redirect('/jabatan')->with('success', 'Data berhasil diubah');
   }
 
   // Delete data
@@ -57,7 +57,7 @@ class JabatanController extends Controller
     $jabatan = Jabatan::find($id);
     $jabatan->delete();
 
-    return redirect('/jabatan');
+    return redirect('/jabatan')->with('success', 'Data berhasil dihapus');
   }
 
 }

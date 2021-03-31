@@ -52,12 +52,12 @@ class LoginController extends Controller
         if(auth()->attempt(array('email' => $inputVal['email'], 'password' => $inputVal['password']))){
             if (auth()->user()->jabatan_id == 0)
             {
-                return redirect('/pegawai');
+                return redirect('/pegawai')->with('success', 'Anda berhasil masuk');
             }
 
             else
             {
-                return redirect('/user');
+                return redirect('/user')->with('success', 'Anda berhasil masuk');
             }
 
         }
@@ -72,10 +72,13 @@ class LoginController extends Controller
     {
       Auth::logout();
 
-      $request->session()->invalidate();
+      if($request->session()->get('change')){
+        $request->session()->forget('change');
+        return redirect('/')->with('success', 'Profile berhasil di-update, silahkan login kembali');
+      }
 
-      $request->session()->regenerateToken();
-
-      return redirect('/');
+      else {
+        return redirect('/')->with('success', 'Anda berhasil keluar');
+      }
     }
 }

@@ -16,16 +16,20 @@ class ReviewController extends Controller
   * @return Response
   */
 
-  // method untuk insert data ke table unit
-  public function store(Request $request)
-  {
+  public function index() {
+    return Review::all();
+  }
+
+  // Insert data to database
+  public function store(Request $request) {
+
     $this->validate($request,[
       'name' => 'required',
       'email' => 'required',
       'message' => 'required'
     ]);
 
-    Review::create([
+    $input = Review::create([
       'id' => $request->id,
       'name' => $request->name,
       'email' => $request->email,
@@ -33,5 +37,29 @@ class ReviewController extends Controller
     ]);
 
     return redirect()->back()->with('success', 'Terima kasih telah memberi ulasan');
+  }
+
+  public function update(Request $request, $id)
+  {
+    $this->validate($request,[
+      'name' => 'required',
+      'email' => 'required',
+      'message' => 'required'
+    ]);
+
+    $review = Review::find($id);
+    $review->name = $request->name;
+    $review->email = $request->email;
+    $review->message = $request->message;
+    $review->save();
+
+    return $review;
+  }
+
+  public function delete($id)
+  {
+    $review = Review::find($id);
+    $review->delete();
+    return $review;
   }
 }

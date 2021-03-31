@@ -15,12 +15,12 @@ class Admin
   */
   public function handle($request, Closure $next)
   {
-    if(auth()->user()->jabatan_id == 0){
+    if(auth()->user()->jabatan_id === 0){
       return $next($request);
     }
 
     else {
-      return redirect()->back();
+      return redirect()->back()->with('danger', 'Tidak bisa akses halaman tersebut');
     }
   }
 }

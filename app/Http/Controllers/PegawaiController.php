@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 
 use App\Pegawai;
+use App\Pegawai2;
 use App\Unit;
 use App\Jabatan;
 use App\User;
@@ -26,15 +27,17 @@ class PegawaiController extends Controller
   // Pegawai page
   public function index()
   {
-    $pegawai = DB::table('pegawai2')
-    ->orderBy('id', 'asc')
+    $pegawai = Pegawai2::orderBy('id', 'asc')
     ->get();
+
     $unit = Unit::all();
+
     $jabatan = Jabatan::all();
+
     return view('pegawai', ['pegawai' => $pegawai, 'unit' => $unit, 'jabatan' => $jabatan]);
   }
 
-  // Insert data to database
+  // Insert data
   public function store(Request $request)
   {
 
@@ -55,7 +58,7 @@ class PegawaiController extends Controller
       'cuti'=> $request->cuti
     ]);
 
-    return redirect('/pegawai');
+    return redirect('/pegawai')->with('success', 'Data berhasil disimpan');
   }
 
   // Update data
@@ -77,7 +80,11 @@ class PegawaiController extends Controller
     $pegawai->cuti = $request->cuti;
     $pegawai->save();
 
-    return redirect('/pegawai');
+    if (auth()->user()->jabatan_id === !0) {
+      return redirect('/profile')->with('success', 'Data berhasil diubah');
+    }
+
+    return redirect('/pegawai')->with('success', 'Data berhasil diubah');
   }
 
   // Delete data
@@ -85,7 +92,7 @@ class PegawaiController extends Controller
   {
     $pegawai = Pegawai::find($id);
     $pegawai->delete();
-    return redirect('/pegawai');
+    return redirect('/pegawai')->with('success', 'Data berhasil dihapus');
   }
 
   // Check your ID (Registrasi)
@@ -115,7 +122,7 @@ class PegawaiController extends Controller
   // Checked page
   public function checked(Request $request) {
     $check = $request->session()->get('session');
-  
+
     if($request->session()->has('key')) {
       $pegawai = DB::table('pegawai')
       ->where('id','=',$check)->first();
@@ -148,6 +155,7 @@ class PegawaiController extends Controller
     }
   }
 
+  // Insert data
   public function registered(Request $request)
   {
 
@@ -182,61 +190,4 @@ class PegawaiController extends Controller
 
   }
 
-  public function profile(Request $request)
-  {
-    $id = auth()->user()->pegawai_id;
-    $pegawai = DB::table('pegawai2')->find($id);
-    $disable = $request->session()->get('key', 'disabled');
-    return view('profile', ['pegawai' => $pegawai, 'disable' => $disable]);
-  }
-
-  public function change_password(Request $request)
-  {
-    $id = auth()->user()->id;
-    $password = auth()->user()->password;
-    $password_lama = $request->password_lama;
-    $password_baru = $request->$password;
-
-    if (Hash::check($password_lama, $password)) {
-        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->password_baru)]);
-        return redirect()->back()->with('success', 'Password berhasil diganti');
-    }
-
-    else {
-        return redirect()->back()->with('warning', 'Password salah');
-    }
-  }
-
-  public function upload_photo(Request $request, $id){
-
-    $validator = Validator::make($request->all(), [
-      'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
-    ]);
-
-    if ($validator->fails()) {
-          return redirect()->back()->with('danger', 'Pastikan file berupa gambar berformat .jpeg atau .jpg');
-    }
-
-    $pegawai = Pegawai::find($id);
-    File::delete('file/'.$pegawai->file);
-
-    $file = $request->file('file');
-    $file_name = time()."_".$file->getClientOriginalName();
-    $tujuan_upload = 'file';
-    $file->move($tujuan_upload, $file_name);
-
-    $pegawai->file = $file_name;
-    $pegawai->save();
-
-    return redirect()->back()->with('success', 'Foto berhasil diperbaharui');
-  }
-
-  public function delete_photo($id)
-  {
-    $file = Pegawai::find($id);
-    File::delete('file/'.$file->file);
-    $file->file = null;
-    $file->save();
-    return redirect()->back()->with('success', 'Foto berhasil dihapus');
-  }
 }

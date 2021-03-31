@@ -9,8 +9,17 @@
       </div>
       <div class="modal-body">
         <div class="card-body">
-          <form action="/pengajuan/store" method="head">
+          <form  action="/pengajuan/store" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
+            <div class="form-group">
+              <label for="">Janis Cuti</label>
+              <select class="form-control" name="jenis_cuti" id="jenis_cuti" required>
+                <option value="Tahunan">Cuti Tahunan</option>
+                <option value="Sakit">Cuti Sakit</option>
+                <option value="Penting">Cuti Penting</option>
+                <option value="Hamil">Cuti Hamil</option>
+              </select>
+            </div>
             <div class="form-group">
               <label>Tanggal Pengajuan</label>
               <input type="date" class="form-control" name="tanggal_pengajuan">
@@ -27,6 +36,15 @@
               <label>Hingga</label>
               <input type="date" class="form-control" name="hingga">
             </div>
+
+            <div class="form-group" id="upload_file" style="display:none;">
+              <label for="">Upload dokument pendukung</label>
+              <div class="custom-file">
+                <input type="file" name="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile"></label>
+              </div>
+            </div>
+
             <div class="form-group">
               <input type="hidden" class="form-control" name="pegawai_id" value="{{$pegawai->id}}">
             </div>

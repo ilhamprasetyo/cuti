@@ -20,7 +20,7 @@ class Koordinator
     }
 
     else {
-      return redirect()->back();
+      return redirect()->back()->with('danger', 'Akses anda dibatasi');
     }
   }
 }

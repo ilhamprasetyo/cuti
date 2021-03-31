@@ -2,10 +2,10 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="row mr-1">
       <div class="col my-auto">
-        <div class="bg-white rounded"><img class="img-thumbnail" width="50" src="{{ url('/file/logo.jpg') }}"></div>
+        <div class="bg-white rounded"><img class="img-thumbnail" width="50" src="images/logo.jpg"></div>
       </div>
-      <div class="col my-auto">
-        <div class="p-2 bg-white rounded"><strong>{{$pegawai->nama_jabatan}}</strong></div>
+      <div class="col my-auto text-nowrap">
+        <span class="text-white"><strong>{{$pegawai->nama_jabatan}}</strong></span>
       </div>
     </div>
 
@@ -22,44 +22,44 @@
         <li class="nav-item">
           <a class="nav-link" href="/approval">Approval</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/karyawan">Karyawan </a>
+        </li>
         @endif
         <li class="nav-item">
-          <a class="nav-link" href="/profile">Profile</a>
+
         </li>
       </ul>
-      <div class="">
-        <ul class="navbar-nav ml-md-auto">
-          <li class="row mr-3">
-              @isset($disable)
+      <ul class="navbar-nav ml-md-auto">
 
-              @endisset
+        @isset($disable)
 
-              @empty($disable)
-              <div class="text-white mr-3 my-auto">Cuti : {{$pegawai->cuti}} hari</div>
-              @endempty
+        @endisset
 
-              <div class="" align="">
 
-                @isset($disable)
-
-                @endisset
-
-                @empty($disable)
-                @if ($pegawai->cuti === 0)
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" disabled>Pengajuan Cuti</button>
-                @else
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Pengajuan Cuti</button>
-                @endif
-                @endempty
-              </div>
+        @empty($disable)
+        <div class="" align="">
+          <div class="p-2 my-auto mr-1">
+            <span class="text-white"><strong>Cuti : {{$pegawai->cuti}} hari</strong>
             </div>
-          </li>
-          <div class="dropdown">
+          </div>
+          <div class="my-auto mr-3">
+            @if ($pegawai->cuti === 0)
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" disabled>Pengajuan Cuti</button>
+            @else
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Pengajuan Cuti</button>
+            @endif
+          </div>
+          @endempty
+
+
+          <div class="my-auto">
             <button class="btn text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$pegawai->nama}}</button>
-            <div class="dropdown-menu dropdown-menu-lg-right">
-              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="/profile">Profile</a>              
+              <button class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
-              </a>
+              </button>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
               </form>
@@ -67,8 +67,8 @@
           </div>
         </ul>
       </div>
-  </nav>
-  <div class="relative" align="center">
-    @include('messages')
+    </nav>
+    <div class="relative" align="center">
+      @include('messages')
+    </div>
   </div>
-</div>

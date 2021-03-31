@@ -15,21 +15,15 @@ class UnitController extends Controller
   *
   * @return Response
   */
+
+  // Unit page
   public function index()
   {
     $unit = Unit::all();
     return view('unit', ['unit' => $unit]);
   }
 
-  public function input()
-  {
-
-    // Memanggil view tambah
-    return view('unit_input');
-
-  }
-
-  // method untuk insert data ke table unit
+  // Insert data to database
   public function store(Request $request)
   {
     $this->validate($request,[
@@ -41,15 +35,10 @@ class UnitController extends Controller
       'nama_unit' => $request->nama_unit
     ]);
 
-    return redirect('/unit');
+    return redirect('/unit')->with('success', 'Data berhasil disimpan');
   }
 
-  public function edit($id)
-  {
-    $unit = Unit::find($id);
-    return view('unit_edit', ['unit' => $unit]);
-  }
-
+  // Update data
   public function update(Request $request, $id)
   {
     $this->validate($request,[
@@ -59,27 +48,14 @@ class UnitController extends Controller
     $unit = Unit::find($id);
     $unit->nama_unit = $request->nama_unit;
     $unit->save();
-    return redirect('/unit');
+    return redirect('/unit')->with('success', 'Data berhasil diubah');
   }
 
+  // Delete data
   public function delete($id)
   {
     $unit = Unit::find($id);
     $unit->delete();
-    return redirect('/unit');
-  }
-
-  public function search(Request $request)
-  {
-    // menangkap data pencarian
-    $search = $request->search;
-
-    // mengambil data dari table pegawai sesuai pencarian data
-    $unit = DB::table('unit')
-    ->where('nama_unit','like',"%".$search."%")
-    ->Paginate(5);
-    // mengirim data pegawai ke view index
-    return view('unit',['unit' => $unit]);
-
+    return redirect('/unit')->with('success', 'Data berhasil dihapus');
   }
 }
