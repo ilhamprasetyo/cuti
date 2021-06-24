@@ -25,15 +25,19 @@ class PegawaiController extends Controller
   */
 
   // Pegawai page
+  public function i()
+  {
+    $pegawai = Pegawai2::orderBy('id', 'desc')->get();
+    $unit = Unit::all();
+    $jabatan = Jabatan::all();
+    return view('pegawai', ['pegawai' => $pegawai, 'unit' => $unit, 'jabatan' => $jabatan]);
+  }
+
   public function index()
   {
-    $pegawai = Pegawai2::orderBy('id', 'asc')
-    ->get();
-
+    $pegawai = Pegawai2::orderBy('id', 'desc')->get();
     $unit = Unit::all();
-
     $jabatan = Jabatan::all();
-
     return view('pegawai', ['pegawai' => $pegawai, 'unit' => $unit, 'jabatan' => $jabatan]);
   }
 

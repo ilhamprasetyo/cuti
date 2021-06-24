@@ -56,7 +56,7 @@
       </ul>
     </div>
   </nav>
-  <div class="relative" align="center">
+  <div class="relative" align="center" id="messages">
     @include('messages')
   </div>
 </div>

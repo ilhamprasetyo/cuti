@@ -34,6 +34,10 @@ Route::get('/', function () {
   return view('index', ['review' => $review, 'all_review' => $all_review]);
 })->name('index');
 
+Route::get('/test', function () {
+  return view('test');
+})->name('test');
+
 Route::middleware(['admin', 'auth'])->group(function () {
   Route::get('/pegawai', [PegawaiController::class, 'index']);
   Route::post('/pegawai/store', [PegawaiController::class, 'store']);

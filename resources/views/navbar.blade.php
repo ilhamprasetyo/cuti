@@ -56,7 +56,7 @@
           <div class="my-auto">
             <button class="btn text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$pegawai->nama}}</button>
             <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="/profile">Profile</a>              
+              <a class="dropdown-item" href="/profile">Profile</a>
               <button class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
               </button>
@@ -68,7 +68,7 @@
         </ul>
       </div>
     </nav>
-    <div class="relative" align="center">
+    <div class="relative" align="center" id="messages">
       @include('messages')
     </div>
   </div>

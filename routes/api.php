@@ -15,11 +15,19 @@ use App\Http\Controllers\ReviewController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => 'api'], function() {
+  Route::get('/all', [ReviewController::class, 'getAllReview']);
+
+  Route::get('/data_review', [ReviewController::class, 'getReview'])->name('data');
+
+  Route::get('/get', [ReviewController::class, 'filterReview']);
+  Route::post('/store', [ReviewController::class, 'store']);
+  Route::get('/edit/{id}', [ReviewController::class, 'edit']);
+  Route::put('/update/{id}', [ReviewController::class, 'update']);
+  Route::delete('/delete/{id}', [ReviewController::class, 'delete']);
 });
 
-Route::get('/review_view', [ReviewController::class, 'index']);
+
 Route::post('/review_input', [ReviewController::class, 'store']);
 Route::put('/review_update/{id}', [ReviewController::class, 'update']);
 Route::delete('/review_delete/{id}', [ReviewController::class, 'delete']);

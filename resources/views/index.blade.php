@@ -10,7 +10,7 @@
   <title>CutiKu - Home</title>
 </head>
 <body>
-  <section id="navbar">
+  <section>
     <div class="fixed-top">
       <div class="bg-dark">
         <!-- Navbar -->
@@ -50,7 +50,7 @@
       </div>
 
       <!-- Bootstrap Messages Alert -->
-      <div class="relative" align="center">
+      <div class="relative" align="center" id="messages">
         @include('messages')
       </div>
 
@@ -170,6 +170,7 @@
               </p>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -204,17 +205,17 @@
     <div class="row m-auto text-center justify-content-sm-center">
       <div class="col-md-auto col-sm-auto col-4">
         <div class="p-3 text-white">
-          <a class="text-white text-decoration-none" href="https://www.linkedin.com/in/ilhamprasetyo11/"><i class="fab fa-linkedin fa-3x"></i></a>
+          <a class="text-white text-decoration-none" href="https://www.linkedin.com/in/ilhamprasetyo11/" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
         </div>
       </div>
       <div class="col-md-auto col-sm-auto col-4">
         <div class="p-3 text-white">
-          <a class="text-white text-decoration-none" href="https://github.com/ilhamprasetyo"><i class="fab fa-github-square fa-3x"></i></a>
+          <a class="text-white text-decoration-none" href="https://github.com/ilhamprasetyo" target="_blank"><i class="fab fa-github-square fa-3x"></i></a>
         </div>
       </div>
       <div class="col-md-auto col-sm-auto col-4">
         <div class="p-3 text-white">
-          <a class="text-white text-decoration-none" href="mailto:ilhamprasetyobaru@gmail.com"><i class="fas fa-envelope-square fa-3x"></i></a>
+          <a class="text-white text-decoration-none" href="mailto:ilhamprasetyobaru@gmail.com" target="_blank"><i class="fas fa-envelope-square fa-3x"></i></a>
         </div>
       </div>
     </div>
@@ -244,19 +245,19 @@
         <div class="col-auto p-auto m-auto">
           <p>Selamat datang di aplikasi CutiKu. CutiKu adalah aplikasi cuti berbasis web yang bertujuan untuk memudahkan karyawan dalam mengajukan cuti.</p>
           <p>Aplikasi ini adalah portofolio <i>Web Developer</i> saya yang dibuat menggunakan :</p>
-          <span>Front-End</span>
+          <span>Front-End :</span>
           <ul>
             <li>HTML</li>
             <li>CSS</li>
             <li>JavaScript</li>
             <li>Bootstrap 4.6</li>
           </ul>
-          <span>Back-End</span>
+          <span>Back-End :</span>
           <ul>
             <li>PHP</li>
             <li>Laravel 8</li>
           </ul>
-          <span>DBMS</span>
+          <span>RDBMS :</span>
           <ul>
             <li>MySQL</li>
           </ul>
@@ -291,7 +292,7 @@
         </div>
         <div class="col-auto p-auto m-auto">
           <div class="p-3">
-            <form action="/review_input" method="post">
+            <form id="userForm">
               {{ csrf_field() }}
               <div class="form-group">
                 <label>Nama</label>

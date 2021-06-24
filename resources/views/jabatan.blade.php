@@ -23,8 +23,8 @@
       <div class="card p-3 my-3">
 
         <!-- Title -->
-        <div class="mb-3 bg-light text-center">
-          <h1 class="display-4">Jabatan</h1>
+        <div class="mb-3">
+          <h1 class="title display-4">Jabatan</h1>
         </div>
 
         <!-- Table -->

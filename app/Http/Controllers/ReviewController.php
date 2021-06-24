@@ -16,27 +16,28 @@ class ReviewController extends Controller
   * @return Response
   */
 
-  public function index() {
-    return Review::all();
+  public function getAllReview()
+  {
+    $review = DB::table('review')
+    ->orderBy('id', 'desc')
+    ->get();
+
+    return $review;
   }
 
-  // Insert data to database
-  public function store(Request $request) {
+  public function filterReview(Request $request)
+  {
+    $filter = $request->filter;
+    $review = DB::table('review')->where('name', 'like', "%$filter%")->get();
 
-    $this->validate($request,[
-      'name' => 'required',
-      'email' => 'required',
-      'message' => 'required'
-    ]);
+    return $review;
+  }
 
-    $input = Review::create([
-      'id' => $request->id,
-      'name' => $request->name,
-      'email' => $request->email,
-      'message' => $request->message
-    ]);
+  public function edit($id) // for edit and show
+  {
+    $review = Review::find($id);
 
-    return redirect()->back()->with('success', 'Terima kasih telah memberi ulasan');
+    return $review;
   }
 
   public function update(Request $request, $id)
@@ -53,10 +54,76 @@ class ReviewController extends Controller
     $review->message = $request->message;
     $review->save();
 
-    return $review;
+    $msg = [
+      'success' => true,
+      'message' => 'Article updated successfully'
+    ];
+
+    return response()->json($msg);
   }
 
   public function delete($id)
+  {
+    $review = Review::find($id);
+    if(!empty($review)){
+      $review->delete();
+      $msg = [
+        'success' => true,
+        'message' => 'Review deleted successfully!'
+      ];
+      return response()->json($msg);
+    } else {
+      $msg = [
+        'success' => false,
+        'message' => 'Review deleted failed!'
+      ];
+      return response()->json($msg);
+    }
+  }
+
+
+
+
+  // Insert data to database
+  public function store(Request $request) {
+
+    $this->validate($request,[
+      'name' => 'required',
+      'email' => 'required',
+      'message' => 'required'
+    ]);
+
+    $input = Review::create([
+      'name' => $request->name,
+      'email' => $request->email,
+      'message' => $request->message
+    ]);
+
+    $msg = [
+      'success' => true,
+      'message' => 'Review deleted successfully!'
+    ];
+    return response()->json($msg);
+  }
+
+  public function k(Request $request, $id)
+  {
+    $this->validate($request,[
+      'name' => 'required',
+      'email' => 'required',
+      'message' => 'required'
+    ]);
+
+    $review = Review::find($id);
+    $review->name = $request->name;
+    $review->email = $request->email;
+    $review->message = $request->message;
+    $review->save();
+
+    return $review;
+  }
+
+  public function d($id)
   {
     $review = Review::find($id);
     $review->delete();

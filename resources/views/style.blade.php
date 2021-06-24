@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- DataTables -->
-<link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.25/r-2.2.9/datatables.min.css"/>
 
 <!-- Custom CSS -->
 <link rel="stylesheet" type="text/css" href="/css/styles.css">

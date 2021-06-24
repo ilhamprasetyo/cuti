@@ -25,7 +25,9 @@ class UserController extends Controller
 
     $pegawai = Pegawai2::where('id', $id)->first();
 
-    $pengajuan = Pengajuan2::where('pegawai_id', $id)->get();
+    $pengajuan = Pengajuan2::where('pegawai_id', $id)
+    ->orderBy('id', 'desc')
+    ->get();
 
     return view('user', ['pegawai' => $pegawai, 'pengajuan' => $pengajuan]);
   }

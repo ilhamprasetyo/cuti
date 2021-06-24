@@ -9,8 +9,8 @@ $(document).ready(function() {
 // DataTable
 $(document).ready( function () {
   $('#table_id').DataTable({
-    responsive: true,
-    scrollY: true
+    scrollX: true,
+    scrollY: 300
   })
 });
 
@@ -18,6 +18,11 @@ $(document).ready( function () {
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
+
+setInterval(function(){
+  $('#messages').fadeOut();
+}, 3000);
+
 
 // Custom File Upload
 $(".custom-file-input").on("change", function() {
@@ -135,6 +140,7 @@ $('#rincian').on('show.bs.modal', function (event) {
   var jabatan_id = button.data('jabatan_id')
   var nama_jabatan = button.data('nama_jabatan')
   var status = button.data('status')
+  var keterangan = button.data('keterangan')
   var simpan = button.data('simpan')
 
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -152,6 +158,7 @@ $('#rincian').on('show.bs.modal', function (event) {
   modal.find('.jabatan_id').val(jabatan_id)
   modal.find('.nama_jabatan').val(nama_jabatan)
   modal.find('.status').val(status)
+  modal.find('.keterangan').val(keterangan)
   modal.find('.simpan').closest("form").attr("action",simpan)
 })
 

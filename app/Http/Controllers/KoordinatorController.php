@@ -23,6 +23,7 @@ class KoordinatorController extends Controller
       ['unit_id', $pegawai->unit_id],
       ['jabatan_id', 1]
     ])
+    ->orderBy('id', 'desc')
     ->get();
 
     $disable = true;
@@ -51,11 +52,16 @@ class KoordinatorController extends Controller
   public function status(Request $request, $id) {
     $pengajuan = Pengajuan::find($id);
     $pengajuan->status = $request->status;
+    $pengajuan->keterangan = $request->keterangan;
     $pengajuan->save();
 
     if ($pengajuan->status == "Disetujui") {
-      $cuti = Pegawai::where('id', '=', $pengajuan->pegawai_id)
+      Pegawai::where('id', $pengajuan->pegawai_id)
       ->decrement('cuti', $pengajuan->lama_cuti);
+
+      Pengajuan::where('id', $pengajuan->id)
+      ->update(['keterangan' => '']);
+
       return back()->with('success', 'Cuti disetujui');
     }
 
@@ -63,7 +69,10 @@ class KoordinatorController extends Controller
       return back()->with('warning', 'Cuti tidak disetujui');
     }
 
-    else {
+    elseif ($pengajuan->status == "Dibatalkan") {
+      Pengajuan::where('id', $pengajuan->id)
+      ->update(['keterangan' => '']);
+
       return back()->with('danger', 'Cuti dibatalkan');
     }
   }

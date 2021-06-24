@@ -22,13 +22,13 @@
     <div class="container-fluid">
       <div class="card p-3">
         <!-- Title -->
-        <div class="mb-3 bg-light text-center">
-          <h1 class="display-4">Pegawai</h1>
+        <div class="mb-3">
+          <h1 class="title display-4">Pegawai</h1>
         </div>
 
         <!-- Table -->
-        <div class="">
-          <table class="table table-hover display nowrap dataTable dtr-inline" style="overflow-x: auto;" id="table_id">
+        <div class="table-responsive">
+            <table class="table table-hover display nowrap dataTable dtr-inline" style="overflow-x: auto;" id="table_id">
             <thead class="thead-dark">
               <tr align="center">
                 <th scope="col">No</th>
@@ -98,6 +98,10 @@
 
     <!-- CDN Javascript dan Custom Javascript -->
     @include('behavior')
+
+    <script type="text/javascript">
+
+    </script>
 
   </body>
   </html>

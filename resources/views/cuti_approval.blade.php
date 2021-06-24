@@ -12,12 +12,24 @@
           {{ csrf_field() }}
           {{ method_field('PUT') }}
           <div class="form-group">
+            <label>ID Pengajuan : </label>
+            <input type="text" class="form-control id" readonly>
+          </div>
+          <div class="form-group">
+            <label>Nama : </label>
+            <input type="text" class="form-control nama" readonly>
+          </div>
+          <div class="form-group">
             <label>Status : </label>
             <select class="form-control status" name="status" required>
               <option value="Disetujui">Disetujui</option>
               <option value="Tidak Disetujui">Tidak Disetujui</option>
               <option value="Dibatalkan">Dibatalkan</option>
             </select>
+          </div>
+          <div class="form-group">
+            <label>Keterangan : </label>
+            <textarea class="form-control keterangan" name="keterangan"></textarea>
           </div>
           <button type="submit" class="btn btn-primary simpan">Simpan</button>
         </form>

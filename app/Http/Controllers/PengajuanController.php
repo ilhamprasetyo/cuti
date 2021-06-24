@@ -106,7 +106,7 @@ class PengajuanController extends Controller
         ]);
 
         if ($validator->fails()) {
-          return redirect()->back()->with('danger', 'Pastikan file berformat .jpeg .jpg .pdf');
+          return redirect()->back()->with('danger', 'Pastikan file berformat .jpeg .jpg .png .pdf');
         }
 
         File::delete('files/'.$pengajuan->file);
@@ -133,8 +133,7 @@ class PengajuanController extends Controller
     $pengajuan->tanggal_pengajuan = $request->tanggal_pengajuan;
     $pengajuan->lama_cuti = $request->lama_cuti;
     $pengajuan->mulai = $request->mulai;
-    $pengajuan->hingga = $request->hingga;
-    $pengajuan->status = $request->status;
+    $pengajuan->hingga = $request->hingga;    
     $pengajuan->save();
 
     return redirect()->back()->with('success', 'Data Cuti berhasil diubah');

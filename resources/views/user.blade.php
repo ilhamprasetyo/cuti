@@ -23,8 +23,8 @@
       <div class="card p-3">
 
         <!-- Title -->
-        <div class="mb-3 bg-light text-center">
-          <h1 class="display-4">Cuti Saya</h1>
+        <div class="mb-3">
+          <h1 class="title display-4">Cuti Saya</h1>          
         </div>
 
         <!-- Table -->
@@ -40,6 +40,7 @@
               <th scope="col">Hingga</th>
               <th scope="col">Lampiran</th>
               <th scope="col">Status</th>
+              <th scope="col">Keterangan</th>
               <th scope="col">Opsi</th>
             </tr>
           </thead>
@@ -59,10 +60,11 @@
                 @if ($data->file === null)
 
                 @else
-                <a class="btn btn-primary" href="pengajuan/download/{{ $data->id }}">Download</a>                
+                <a class="btn btn-primary" href="pengajuan/download/{{ $data->id }}">Download</a>
                 @endif
               </td>
               <td class="align-middle"> {{ $data->status }} </td>
+              <td class="align-middle"> {{ $data->keterangan }} </td>
               <td class="align-middle">
 
                 <!-- Jika status disetujui -->

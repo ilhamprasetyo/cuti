@@ -23,15 +23,16 @@
       <div class="card p-3">
 
         <!-- Form Title -->
-        <div class="mb-3 bg-light text-center">
-          <h1 class="display-4">Approval</h1>
+        <div class="mb-3">
+          <h1 class="title display-4">Approval</h1>
         </div>
 
         <!-- Table -->
-        <table class="table table-hover display nowrap dataTable dtr-inline" id="table_id">
+        <table class="table table-hover text-nowrap" id="table_id">
           <thead class="thead-dark">
             <tr align="center">
               <th scope="col">No</th>
+              <th scope="col">ID</th>
               <th scope="col">Nama</th>
               <th scope="col">Jenis</th>
               <th scope="col">Tanggal</th>
@@ -40,6 +41,7 @@
               <th scope="col">Hingga</th>
               <th scope="col">Lampiran</th>
               <th scope="col">Status</th>
+              <th scope="col">Keterangan</th>
               <th scope="col">Opsi</th>
             </tr>
           </thead>
@@ -49,6 +51,7 @@
             @foreach($pengajuan as $data)
             <tr align="center">
               <th class="align-middle" scope="row"> {{ $loop->iteration }} </th>
+              <td class="align-middle"> {{ $data->id }} </td>
               <td class="align-middle"> {{ $data->nama }} </td>
               <td class="align-middle"> {{ $data->jenis_cuti }} </td>
               <td class="align-middle"> {{ $data->tanggal_pengajuan }} </td>
@@ -56,15 +59,17 @@
               <td class="align-middle"> {{ $data->mulai }} </td>
               <td class="align-middle"> {{ $data->hingga }} </td>
               <td class="align-middle">
+
                 @if ($data->file === null)
 
                 @else
                 <a href="/pengajuan/download/{{ $data->id }}" class="btn btn-info" role="button">Download</button>
-                  @endif
-                </td>
 
+                @endif
 
+              </td>
                 <td class="align-middle"> {{ $data->status }} </td>
+                <td class="align-middle"> {{ $data->keterangan }} </td>
                 <td class="align-middle">
 
                   <!-- Jika lama cuti melebihi sisa cuti -->
@@ -92,8 +97,10 @@
                   <!-- Jika tidak disetujui -->
                   @else
                   <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#rincian"
+                  data-id="{{$data->id}}"
                   data-nama="{{$data->nama}}"
                   data-status="{{$data->status}}"
+                  data-keterangan="{{$data->keterangan}}"
                   data-simpan="/pengajuan/status/{{ $data->id }}">
 
                   @if ($data->status === "Tidak Disetujui")
@@ -120,6 +127,10 @@
 
   <!-- Javascript CDN and Custom Javascript -->
   @include('behavior')
+
+<script type="text/javascript">
+
+</script>
 
 </body>
 </html>

@@ -13,12 +13,22 @@ body {
 }
 
 #login {
-background-image:url(/images/ocean.jpg);
-object-fit:scale-down;
+  background-image:url(/images/ocean.jpg);
+  object-fit:scale-down;
+}
+
+#table_id, #myTable {
+  min-width: 100%;
+}
+
+.title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .margin-top {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .content {
@@ -109,7 +119,7 @@ textarea {
 
 
 
-@media (max-width: 576px) {
+@media (max-width: 600px) {
   .mobile {
     margin: auto;
     padding: 30px 0 30px 0;

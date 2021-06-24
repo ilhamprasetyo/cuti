@@ -1,5 +1,5 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Pengajuan Cuti</h5>
@@ -12,7 +12,7 @@
           <form  action="/pengajuan/store" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
-              <label for="">Janis Cuti</label>
+              <label>Jenis Cuti</label>
               <select class="form-control" name="jenis_cuti" id="jenis_cuti" required>
                 <option value="Tahunan">Cuti Tahunan</option>
                 <option value="Sakit">Cuti Sakit</option>
@@ -20,18 +20,22 @@
                 <option value="Hamil">Cuti Hamil</option>
               </select>
             </div>
+            
             <div class="form-group">
               <label>Tanggal Pengajuan</label>
               <input type="date" class="form-control" name="tanggal_pengajuan">
             </div>
+
             <div class="form-group">
               <label>Lama Cuti</label>
               <input type="number" class="form-control" min="0" max="{{$pegawai->cuti}}" name="lama_cuti">
             </div>
+
             <div class="form-group">
               <label>Mulai</label>
               <input type="date" class="form-control" name="mulai">
             </div>
+
             <div class="form-group">
               <label>Hingga</label>
               <input type="date" class="form-control" name="hingga">
@@ -54,6 +58,7 @@
             <div class="form-group">
               <input type="hidden" class="form-control" name="jabatan_id" value="{{$pegawai->jabatan_id}}">
             </div>
+
             <button type="submit" class="btn btn-primary">Simpan</button>
           </form>
         </div>
